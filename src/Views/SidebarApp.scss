@@ -13,11 +13,11 @@ body {
 header {
     display: flex;
     justify-content: space-around;
-    width: 300px;
     align-items: center;
     margin-top: 20px;
+    height: 28px;
 
-    :global(#input_amount) {
+    input[name=amount] {
         border: 1px solid #aaa;
         padding: 4px;
         width: 50%;
@@ -26,8 +26,82 @@ header {
         font-size: 16px;
     }
 
-    :global(#input_symbol) {
+    select[name=symbol] {
         width: 40%;
     }
 
+}
+
+.add_symbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height: 28px;
+    
+    :global(#add_symbol) {
+        width: 28px;
+        height: 100%;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+
+        svg {
+            height: inherit;
+            width: inherit;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            
+            border: 1px solid #aaa;
+            border-left: none;
+            border-radius: 0px 4px 4px 0px;
+        }
+    }
+    
+    :global(.select2-container--default .select2-selection--single) {
+        border-radius: 4px 0px 0px 4px;
+    }
+
+    select[name=add_symbol]{
+        height: 100%;
+        width: 40%;
+    }
+}
+
+// normalize
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+div {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }

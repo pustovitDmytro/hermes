@@ -1,4 +1,4 @@
-import Star from '../icons/app/star-solid.svg';
+import Star from '../icons/app/star.svg';
 import template from './RateView.html';
 import styles from './RateView.scss';
 
