@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "incredible"
+    ],
+    "globals": {
+        "Backbone": "readonly",
+        "window": "writable",
+        "$": "readonly",
+        "_": "readonly",
+        "document": "writable"
+    }
+}

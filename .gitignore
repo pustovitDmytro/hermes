@@ -1,0 +1,8 @@
+build
+node_modules
+tmp/*
+logs/*
+*.log
+*.tgz
+reports/*
+.coveralls.yml

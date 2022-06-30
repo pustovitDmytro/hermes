@@ -1,0 +1,81 @@
+{
+  "name": "hermes",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:sample": "http-server tests/sample -p 3001",
+    "start:build": "http-server build -p 3002",
+    "start:firefox": "web-ext run --source-dir build/firefox --verbose --start-url http://localhost:3001",
+    "assemble:firefox": "webpack --config webpack.config.js --watch",
+    "build:firefox": "webpack --config webpack.config.js && web-ext build --source-dir build/firefox --verbose --artifacts-dir build -o",
+    "firefox": "concurrently --kill-others \"npm run assemble:firefox\" \"npm run start:firefox\" \"npm run start:sample\"",
+    "test:mocha": "mocha --config .mocharc.json 'tests/**/*test.js'",
+    "lint:firefox": "web-ext lint --source-dir build/firefox --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pustovitDmytro/hermes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pustovitDmytro/hermes/issues"
+  },
+  "homepage": "https://github.com/pustovitDmytro/hermes#readme",
+  "engines": {
+    "node": ">=10"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/node": "^7.17.10",
+    "@babel/plugin-proposal-class-properties": "^7.17.12",
+    "@babel/plugin-proposal-decorators": "^7.18.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.18.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.17.12",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/runtime": "^7.18.3",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "chai": "^4.3.6",
+    "cls-hooked": "^4.2.2",
+    "concurrently": "^7.2.1",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.1",
+    "docopt": "^0.6.2",
+    "eslint": "^7.32.0",
+    "eslint-config-incredible": "^2.3.4",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-censor": "^1.5.1",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-markdown": "^2.2.1",
+    "eslint-plugin-mocha": "^9.0.0",
+    "eslint-plugin-no-secrets": "^0.8.9",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-regexp": "^1.3.1",
+    "eslint-plugin-scanjs-rules": "^0.2.1",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-sonarjs": "^0.10.0",
+    "eslint-plugin-unicorn": "^36.0.0",
+    "fs-extra": "^10.1.0",
+    "http-server": "^14.1.1",
+    "json-query": "^2.2.2",
+    "mocha": "^10.0.0",
+    "sass": "^1.53.0",
+    "sass-loader": "^13.0.2",
+    "style-loader": "^3.3.1",
+    "underscore-template-loader": "^1.1.0",
+    "web-ext": "^6.8.0",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "base-api-client": "1.5.8",
+    "myrmidon": "1.7.2",
+    "uuid": "^8.3.2"
+  }
+}

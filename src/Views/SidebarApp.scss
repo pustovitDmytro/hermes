@@ -1,0 +1,33 @@
+:global(#exchange_rates) {
+    list-style-type: none;
+
+    li {
+        margin-left: -20px;
+    }
+}
+
+body {
+    width: 300px;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    width: 300px;
+    align-items: center;
+    margin-top: 20px;
+
+    :global(#input_amount) {
+        border: 1px solid #aaa;
+        padding: 4px;
+        width: 50%;
+        box-sizing: border-box;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    :global(#input_symbol) {
+        width: 40%;
+    }
+
+}

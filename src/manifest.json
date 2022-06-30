@@ -1,0 +1,27 @@
+{
+    "name": "Hermes",
+    "description": "Convert currency reliable as sun rise",
+    "version": "0.0.1",
+    "author": "Dmytro Pustovit",
+    "manifest_version": 2,
+    "icons": {
+      "48": "icons/48.png"
+    },
+    "background": {
+      "scripts": [ "background.js" ]
+    },
+    "permissions": [
+      "storage",
+      "contextMenus"
+    ],
+    "sidebar_action": {
+      "default_title" : "Hermes Converter",
+      "default_panel": "sidebar.html"
+    },
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "{f597ac1d-8bad-5110-82f9-bcd6b655c47b}"
+      }
+    }
+    
+  }
