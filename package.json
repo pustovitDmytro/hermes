@@ -4,15 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start:sample": "http-server tests/sample -p 3001",
     "start:build": "http-server build -p 3002",
     "start:firefox": "web-ext run --source-dir build/firefox --verbose --start-url http://localhost:3001",
-    "assemble:firefox": "webpack --config webpack.config.js --watch",
     "build:firefox": "webpack --config webpack.config.js && web-ext build --source-dir build/firefox --verbose --artifacts-dir build -o",
-    "firefox": "concurrently --kill-others \"npm run assemble:firefox\" \"npm run start:firefox\" \"npm run start:sample\"",
+    "firefox": "concurrently --kill-others \"webpack --config webpack.config.js --watch\" \"npm run start:firefox\" \"npm run start:sample\"",
+    "prepare": "husky install",
+    "coveralls": "cat ./reports/coverage/lcov.info | coveralls",
+    "lint:js": "eslint src bin tests --no-error-on-unmatched-pattern",
+    "lint:firefox": "web-ext lint --source-dir build/firefox --verbose",
+    "test:security": "npm audit --production && npm run test:lock",
     "test:mocha": "mocha --config .mocharc.json 'tests/**/*test.js'",
-    "lint:firefox": "web-ext lint --source-dir build/firefox --verbose"
+    "test:lint": "npm run lint:js && npm run lint:firefox",
+    "test:package": "npt test -c .package-tester.json",
+    "test:coverage": "nyc mocha --config .mocharc.json 'tests/**/*test.js'",
+    "test:debt": "jscpd src --config .jscpd.json",
+    "test:lock": "lockfile-lint --path package-lock.json --validate-https --allowed-hosts npm",
+    "coverage-check": "MODE=test nyc check-coverage",
+    "test": "npm run test:lint && npm run test:security && npm run test:mocha"
   },
   "repository": {
     "type": "git",
@@ -44,7 +53,9 @@
     "cls-hooked": "^4.2.2",
     "concurrently": "^7.2.1",
     "copy-webpack-plugin": "^11.0.0",
+    "coveralls": "^3.1.1",
     "css-loader": "^6.7.1",
+    "danger": "^11.0.7",
     "docopt": "^0.6.2",
     "eslint": "^7.32.0",
     "eslint-config-incredible": "^2.3.4",
@@ -63,8 +74,12 @@
     "eslint-plugin-unicorn": "^36.0.0",
     "fs-extra": "^10.1.0",
     "http-server": "^14.1.1",
+    "husky": "^8.0.1",
+    "jscpd": "^3.4.5",
     "json-query": "^2.2.2",
+    "lockfile-lint": "^4.7.5",
     "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
     "sass": "^1.53.0",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
@@ -74,8 +89,8 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
-    "base-api-client": "1.5.8",
+    "base-api-client": "1.5.9",
     "myrmidon": "1.7.2",
-    "uuid": "^8.3.2"
+    "uuid": "8.3.2"
   }
 }
