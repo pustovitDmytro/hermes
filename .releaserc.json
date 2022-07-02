@@ -1,0 +1,59 @@
+{
+    "branches": ["master"],
+    "branch": "master",
+    "ci": false,
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/changelog", {
+                "changelogFile": "CHANGELOG.md"
+            }
+        ],
+        [
+            "semantic-release-firefox-add-on", {
+                "extensionId": "{f597ac1d-8bad-5110-82f9-bcd6b655c47b}",
+                "targetXpi": "build/firefox-hermes.xpi",
+                "sourceDir": "build/firefox",
+                "channel": "listed",
+                "artifactsDir": "build"
+            }
+        ],
+        [
+            "@semantic-release/git", {
+                "assets": ["README.md", "CHANGELOG.md", "package.json"],
+                "message": "Chore: (release) add version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+            }
+        ],
+        [
+            "@semantic-release/github", {
+                "assets": [
+                    { "path": "build/*.zip", "label": "Packed Extention" },
+                    { "path": "build/*.xpi", "label": "Signed Extention" }
+                ]
+            }
+        ],
+        [ 
+            "semantic-release-telegram", {
+                "chats": [ 238585617 ],
+                "telegra.ph"  : {
+                    "title"   : "{name} v.{version}",
+                    "message" : "<a href='{telegraph_url}'>Release Notes</a>",
+                    "content" : "{release_notes}"
+                }
+            } 
+        ]
+    ],
+    "preset": "eslint",
+    "releaseRules": [
+        { "tag": "Fix", "release": "patch" },
+        { "tag": "Update", "release": "minor" },
+        { "tag": "New", "release": "minor" },
+        { "tag": "Breaking", "release": "major" },
+        { "tag": "Docs", "release": "patch" },
+        { "tag": "Upgrade", "release": "patch" }
+    ],
+    "parserOpts": {
+        "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"]
+    }
+}

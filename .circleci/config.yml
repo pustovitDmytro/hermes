@@ -35,9 +35,9 @@ aliases:
   - &coverage
     name: Test Coverage
     command: npm run test:coverage -- --reporter mocha-junit-reporter --reporter-options mochaFile=reports/test-results/mocha/test-results.xml
-  - &lint
+  - &lint-js
     name: JavaScript Linter
-    command: npm run test:lint -- --format junit --output-file ./reports/test-results/eslint/eslint.xml
+    command: npm run lint:js -- --format junit --output-file ./reports/test-results/eslint/eslint.xml
   - &debt
     name: Technical Debt
     command: npm run test:debt
@@ -58,7 +58,6 @@ aliases:
     paths:
       - ~/.npm
       - node_modules
-      - lib
 
 version: 2.1
 debug: true
@@ -113,7 +112,13 @@ jobs:
       - checkout
       - restore_cache:
           <<: *cache-defaults
-      - run: *lint
+      - run: *lint-js
+      - run: 
+          name: Build Firefox
+          command: npm run build:firefox
+      - run: 
+          name: Lint Firefox build
+          command: npm run lint:firefox
       - store_test_results:
           path: reports
   test-leaks:
@@ -138,13 +143,6 @@ jobs:
       - run: *debt
       - store_artifacts:
           path: reports
-  test-package:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *cache-defaults
-      - run: *test-package
   deploy:
     <<: *defaults
     steps:
@@ -187,7 +185,7 @@ workflows:
           context: npm-packages
           requires:
             - test-coverage
-            - test-package
+            - test-lint
           filters:
             branches:
                 only: master
