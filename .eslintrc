@@ -8,5 +8,13 @@
         "$": "readonly",
         "_": "readonly",
         "document": "writable"
-    }
+    },
+    "overrides": [
+        {
+            "files": ["bin/*.js"],
+            "rules": {
+                "node/no-unpublished-import": 0
+            }
+        }
+    ]
 }

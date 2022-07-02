@@ -42,24 +42,25 @@ class Store {
 }
 
 
-$(() =>  {
-    function request(store, method, model) {
-        switch (method) {
-            case 'read':
-                return model.id
-                    ? store.findOne(model)
-                    : store.findAll();
-            case 'create':
-                return store.create(model);
-            case 'update':
-                return store.update(model);
-            case 'delete':
-                return store.destroy(model);
-            default: throw new Error(`Unrecognized method ${method}`);
-        }
+function request(store, method, model) {
+    switch (method) {
+        case 'read':
+            return model.id
+                ? store.findOne(model)
+                : store.findAll();
+        case 'create':
+            return store.create(model);
+        case 'update':
+            return store.update(model);
+        case 'delete':
+            return store.destroy(model);
+        default: throw new Error(`Unrecognized method ${method}`);
     }
+}
 
+$(() =>  {
     Backbone.sync = function (method, model, options) {
+        // eslint-disable-next-line no-param-reassign
         if (!model.collection.store) model.collection.store = new Store();
         const resp = request(model.collection.store, method, model);
 

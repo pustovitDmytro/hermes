@@ -1,7 +1,7 @@
 {
     "threshold": 5,
     "reporters": ["html", "console"],
-    "ignore": [],
+    "ignore": [ "src/**/index.html"] ,
     "output": "./reports/jscpd",
     "minLines": 3,
     "minTokens": 30,

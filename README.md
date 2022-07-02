@@ -24,3 +24,11 @@ install npm modules:
 to assemble firefox build, run the following:
 
 ```npm run build:firefox```
+
+## External Dependencies:
+
+* ```jquery 3.6.0```
+* ```select2 4.0.13```
+* ```underscore 1.13.4```
+* ```underscore 1.13.4```
+* ```backbone 1.4.1```
