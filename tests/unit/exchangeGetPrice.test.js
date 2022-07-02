@@ -5,7 +5,7 @@ import Binance from '../../src/exchanges/Binance';
 const exchange = new Binance();
 const factory = new Test();
 
-suite('unit: getPrice [binance]');
+suite('unit: exchange.getPrice [binance]');
 
 before(async function () {
     factory.mockAPI();
