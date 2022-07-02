@@ -1,9 +1,13 @@
 <header>
-    <input name="amount" type="text" placeholder="Amount">
-    <select name="symbol"></select>
+    <input name="amount" type="number" placeholder="Amount">
+    <div class="<%=styles.from_symbol_container%>">
+      <select name="symbol"><option selected="true" style='display: none'></option></select>
+    </div>
 </header>
 <section class="<%=styles.add_symbol%>">
-    <select name="add_symbol"></select>
+    <div class="<%=styles.add_symbol_container%>">
+      <select name="add_symbol"></select>
+    </div>
     <button id="add_symbol"></button>
 </section>
 <section>

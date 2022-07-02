@@ -1,3 +1,7 @@
+$input_heigth:28px;
+$mobile_width:250px;
+$mobile_input_width:80%;
+
 :global(#exchange_rates) {
     list-style-type: none;
 
@@ -7,7 +11,8 @@
 }
 
 body {
-    width: 300px;
+    max-width: 400px;
+    min-width: 120px;
 }
 
 header {
@@ -15,7 +20,10 @@ header {
     justify-content: space-around;
     align-items: center;
     margin-top: 20px;
-    height: 28px;
+
+    @media (max-width: $mobile_width) {
+        flex-direction: column;
+    }
 
     input[name=amount] {
         border: 1px solid #aaa;
@@ -24,23 +32,38 @@ header {
         box-sizing: border-box;
         border-radius: 4px;
         font-size: 16px;
+        height: $input_heigth;
+
+        @media (max-width: $mobile_width) {
+            width: $mobile_input_width;
+            margin-bottom: 10px;
+        }
     }
 
-    select[name=symbol] {
+    .from_symbol_container {
         width: 40%;
+
+        @media (max-width: $mobile_width) {
+            width: $mobile_input_width;
+        }
+
+        :global(.select2-container--default .select2-selection__clear){
+            margin-right: 2px !important;
+        }
     }
 
 }
+
 
 .add_symbol {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    height: 28px;
+    height: $input_heigth;
     
     :global(#add_symbol) {
-        width: 28px;
+        width: $input_heigth;
         height: 100%;
         background: none;
         border: none;
@@ -60,13 +83,17 @@ header {
         }
     }
     
-    :global(.select2-container--default .select2-selection--single) {
-        border-radius: 4px 0px 0px 4px;
-    }
-
-    select[name=add_symbol]{
+    .add_symbol_container{
         height: 100%;
         width: 40%;
+        
+        @media (max-width: $mobile_width) {
+            width: calc($mobile_input_width - $input_heigth);
+        }
+        
+        :global(.select2-container--default .select2-selection--single) {
+            border-radius: 4px 0px 0px 4px;
+        }
     }
 }
 
@@ -104,4 +131,16 @@ div {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

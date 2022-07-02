@@ -1,46 +1,50 @@
-export default class Store {
-    constructor(items = []) {
-        this._items = new Map(items.map(item => ([ item.id, item ])));
-        this._seq = this._items.size;
+import { v4 as uuid } from 'uuid';
+import browser from '../browser';
+import { version } from '../manifest.json';
+
+const { storage } = browser;
+
+export default class SyncStore {
+    constructor(prefix) {
+        this._items = [];
+        this._prefix = prefix;
     }
 
-    create(item) {
-        this._seq++;
-        const id = item.id || this._seq;
-        const stored = { ...item, id };
+    async create(item) {
+        const id = item.id || uuid();
+        const stored = { ...item.toJSON(), id, version };
 
-        this._items.set(this._items.size, stored);
+        this._items.push(stored);
+        await storage.sync.set({ [this._prefix]: this._items });
 
         return stored;
     }
 
-    findOne(item) {
-        return this._items.get(item.id);
+    // async findOne(item) {
+    // }
+
+    async cleanup() {
+        await storage.sync.remove(this._prefix);
     }
 
-    findOne() {
-        return [ ...this._items ].map((id, value) => value);
+    async findAll() {
+        const stored = await storage.sync.get(this._prefix);
+        const scoped = stored[this._prefix];
+
+        if (!scoped) return [];
+
+        this._items = scoped;
+
+        return this._items;
     }
 
-    update(item) {
-        this._items.set(item.id, item);
+    // async update(item) {
+    // }
 
-        return item;
-    }
-
-    destroy(item) {
-        this._items.delete(item.id);
+    async destroy(item) {
+        this._items = this._items.filter(i => i.id !== item.id);
+        await storage.sync.set({ [this._prefix]: this._items });
 
         return item;
     }
 }
-
-
-// const { storage } = browser;
-
-// storage.sync.set({
-//     '7f7cf8bd-0b46-5459-b777-004943e4f304' : 1,
-//     '079ac157-bcde-50d1-8128-37189e6af9df' : 2
-// });
-
-// console.log(111_111, storage.sync.get('079ac157-bcde-50d1-8128-37189e6af9df'));

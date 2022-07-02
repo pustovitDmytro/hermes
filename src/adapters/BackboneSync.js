@@ -1,5 +1,3 @@
-import Store from '../store/LocalStore';
-
 function request(store, method, model) {
     switch (method) {
         case 'read':
@@ -16,17 +14,17 @@ function request(store, method, model) {
     }
 }
 
-export default function (method, model, options) {
+export default async function (method, model, options) {
     // eslint-disable-next-line no-param-reassign
-    if (!model.collection.store) model.collection.store = new Store();
-    const resp = request(model.collection.store, method, model);
+    const store = model.store ||  model.collection.store;
 
-    if (resp) {
+    try {
+        const resp = await request(store, method, model);
+
         model.trigger('sync', model, resp, options);
-        // if (options && options.success) {
-        //     options.success(resp);
-        // }
+        if (options?.success) options.success(resp);
+        // if (options?.complete) options.complete(resp);
+    } catch (error) {
+        if (options?.error) options.error(error);
     }
-
-    // if (options && options.complete) options.complete(resp);
 }

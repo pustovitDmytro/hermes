@@ -24,11 +24,12 @@ export default Backbone.View.extend({
         this.listenTo(this.model, 'ready', this.appReady);
 
         this.symbolInput.select2({
-            placeholder : 'Currency',
-            allowClear  : true
+            placeholder : 'Source',
+            allowClear  : true,
+            width       : '100%'
         });
 
-        this.addSymbolInput.select2({ placeholder: 'Currency' });
+        this.addSymbolInput.select2({ placeholder: 'Destination', width: '100%' });
 
         this.addRateBtn.append(Plus);
         this.render();
@@ -55,6 +56,8 @@ export default Backbone.View.extend({
     render() {
         const { amount, symbol } = this.model.toJSON();
 
+        console.log('render', { amount, symbol });
+
         this.amountInput.val(amount);
         this.symbolInput.val(symbol);
         this.symbolInput.trigger('change');
@@ -78,6 +81,7 @@ export default Backbone.View.extend({
 
         this.symbolInput.append(view.render().el);
         this.addSymbolInput.append(addView.render().el);
+        console.log('addSymbol');
     }
 
 });

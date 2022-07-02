@@ -1,7 +1,7 @@
 export default class Store {
-    constructor(items = []) {
-        this._items = new Map(items.map(item => ([ item.id, item ])));
-        this._seq = this._items.size;
+    constructor() {
+        this._items = new Map();
+        this._seq = 1;
     }
 
     create(item) {
@@ -18,7 +18,7 @@ export default class Store {
         return this._items.get(item.id);
     }
 
-    findOne() {
+    findAll() {
         return [ ...this._items ].map((id, value) => value);
     }
 

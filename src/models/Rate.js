@@ -1,17 +1,15 @@
 export default Backbone.Model.extend({
-    initialize({ app, ...attributes }) {
+    initialize(attributes) {
+        const app = window._app;
+
         this.set({ attributes });
         this.set({ price: null });
-        this.app = app;
-        this.calculate();
-        this.listenTo(this.app, 'change', this.calculate);
+        this.calculate(app);
+        this.listenTo(app, 'change', this.calculate);
     },
 
-    calculate() {
-        const app = this.app;
-
+    calculate(app) {
         const { amount, symbol } = app.toJSON();
-
 
         if (amount && symbol) {
             const price = app.exchange.getPrice(amount, symbol, this.get('symbol'));
