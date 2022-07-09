@@ -29,7 +29,7 @@
         ],
         [
             "@semantic-release/git", {
-                "assets": ["README.md", "CHANGELOG.md", "package.json"],
+                "assets": ["README.md", "CHANGELOG.md", "package.json", "src/manifest.json"],
                 "message": "Chore: (release) add version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
             }
         ],
