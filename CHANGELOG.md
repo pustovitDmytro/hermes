@@ -1,3 +1,14 @@
+## [1.0.1](https://github.com/pustovitDmytro/hermes/compare/v1.0.0...v1.0.1) (2022-07-09)
+
+
+### Chore
+
+* commit updated manifest file ([a4d319b](https://github.com/pustovitDmytro/hermes/commit/a4d319b467248fc46dbd6cc8d3862b71844ec26c))
+
+### Docs
+
+* adds usage to readme ([f7939b8](https://github.com/pustovitDmytro/hermes/commit/f7939b8d4997037cff33214303c4f13e638dad46))
+
 # 1.0.0 (2022-07-09)
 
 
