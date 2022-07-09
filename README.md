@@ -32,3 +32,9 @@ to assemble firefox build, run the following:
 * ```underscore 1.13.4```
 * ```underscore 1.13.4```
 * ```backbone 1.4.1```
+
+## Usage
+
+1. Select text with currency symbol (i.e "1.5 BTC"). 
+2. Then right-click on the context menu and select "Convert currency". 
+1. A sidebar with conversation results will be shown.
