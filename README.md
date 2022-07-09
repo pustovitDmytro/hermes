@@ -33,6 +33,8 @@ to assemble firefox build, run the following:
 * ```underscore 1.13.4```
 * ```backbone 1.4.1```
 
+external dependencies are stored in [lib](./lib) already minified.
+
 ## Usage
 
 1. Select text with currency symbol (i.e "1.5 BTC"). 
