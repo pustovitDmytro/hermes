@@ -5,7 +5,11 @@
     "author": "Dmytro Pustovit",
     "manifest_version": 2,
     "icons": {
-      "48": "icons/48.png"
+      "16": "icons/16.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png",
+      "256": "icons/256.png",
+      "512": "icons/512.png"
     },
     "background": {
       "scripts": [ "background.js" ]
