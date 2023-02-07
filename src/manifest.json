@@ -1,7 +1,7 @@
 {
     "name": "Hermes",
     "description": "Convert currency reliable as sun rise",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "author": "Dmytro Pustovit",
     "manifest_version": 2,
     "icons": {

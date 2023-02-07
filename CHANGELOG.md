@@ -1,3 +1,14 @@
+## [1.0.3](https://github.com/pustovitDmytro/hermes/compare/v1.0.2...v1.0.3) (2023-02-07)
+
+
+### Chore
+
+* fixes some npm audit vulnerabilities ([154d846](https://github.com/pustovitDmytro/hermes/commit/154d8467df2a545530134c364c67296dd5107cee))
+
+### Docs
+
+* update logo ([b7a57ec](https://github.com/pustovitDmytro/hermes/commit/b7a57ecc23814cfa9352e59fb8a17e9972d5f61b))
+
 ## [1.0.2](https://github.com/pustovitDmytro/hermes/compare/v1.0.1...v1.0.2) (2022-07-09)
 
 
