@@ -98,8 +98,8 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
-    "base-api-client": "1.5.9",
-    "myrmidon": "1.7.2",
+    "base-api-client": "1.5.10",
+    "myrmidon": "1.10.0",
     "uuid": "8.3.2"
   }
 }
